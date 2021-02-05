@@ -1,0 +1,7 @@
+node_modules/
+package-lock.json
+log/
+www/composer.lock
+www/vendor/
+www/public/assets/*
+!www/public/assets/.gitkeep

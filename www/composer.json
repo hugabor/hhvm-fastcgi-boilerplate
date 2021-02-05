@@ -1,0 +1,8 @@
+{
+    "name": "example/project",
+    "type": "project",
+    "require": {
+        "hhvm/hhvm-autoload": "^3.2",
+        "facebook/xhp-lib": "^4.0"
+    }
+}

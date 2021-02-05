@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx:latest
+    container_name: project-nginx
+    volumes:
+      - ./nginx-config/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-config/includes:/etc/nginx/includes:ro
+      - ./www/public:/var/www/public:ro
+      - ./log/nginx:/etc/nginx/logs
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - fcgi
+  hhvm:
+    build:
+      context: ./docker-hhvm-fastcgi
+    container_name: project-hhvm
+    volumes:
+      - ./hhvm-config/site.ini:/etc/hhvm/site.ini:ro
+      - ./www:/var/www:ro
+      - ./log/hhvm:/var/log/hhvm
+    expose:
+      - "9000"
+    networks:
+      - fcgi
+networks:
+  fcgi:

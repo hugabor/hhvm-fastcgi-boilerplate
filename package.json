@@ -1,0 +1,17 @@
+{
+  "name": "project",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "docker-compose up -d",
+    "stop": "docker-compose stop",
+    "install-composer": "docker build docker-composer-with-hhvm -t composer-with-hhvm",
+    "composer": "docker run --rm -ti -v ./www:/project -w /project composer-with-hhvm composer",
+    "update-autoload-map": "docker run --rm -ti -v ./www:/project -w /project composer-with-hhvm hhvm ./vendor/bin/hh-autoload",
+    "build": "npm run update-autoload-map",
+    "reload-nginx": "docker container exec project-nginx nginx -s reload"
+  }
+}
